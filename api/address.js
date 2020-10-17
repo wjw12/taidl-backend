@@ -26,7 +26,9 @@ module.exports = async (req, res) => {
             var collection = db.collection('taidl_address');
 
             var q = { address: address };
+            console.log(address);
             collection.findOne(q, (err, result) => {
+                console.log("result", result);
                 if (err) {
                     res.status(400).json(err);
                 }
