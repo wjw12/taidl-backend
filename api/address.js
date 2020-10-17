@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
             if (address.length < 3) { res.status(400).send("invalid address"); return; }
             
             var db = await connectToDatabase(process.env.MONGODB_URI);
+            console.log("connect db", process.env.MONGODB_URI);
+
             var collection = db.collection('taidl_address');
 
             var q = { address: address };
