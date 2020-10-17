@@ -34,7 +34,8 @@ module.exports = async (req, res) => {
                     res.status(400).json(err);
                 }
                 else {
-                    res.status(200).send(result.primaryAddress);
+                    if (result && result.primaryAddress) { res.status(200).send(result.primaryAddress); }
+                    else { res.status(400).send("no result"); }
                 }
             })
             return;
@@ -61,16 +62,24 @@ module.exports = async (req, res) => {
 
                     axios.get(XDAI_MOCK_URI + "generateWallet").then(response => {
                         q = {userId: body.userId, password: body.password, email: body.email, 
-                        primaryAddress: response};
+                        primaryAddress: response.data, addresses: [response.data]};
+
+                        console.log("new user", q);
 
                         collection.insertOne(q, (err, result) => {
                             if (err) { res.status(400).json(err); return; }
-                            res.status(200).send("success");
+
+                            // save to wallet db
+                            var col = db.collection('taidl_address');
+                            col.insertOne({address: response.data, isAnonymous: false}, (err, result) => {
+                                if (err) { res.status(400).json(err); return; }
+                                res.status(200).send("success");
+                            })
                         });
                     }).catch(function(e) { res.status(400).json(e); return; })
                 })
             }
-            return;
+            break;
         default:
             res.status(400).send();
             return;
