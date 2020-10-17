@@ -1,0 +1,14 @@
+{
+  "name": "mock-xdai-chain",
+  "version": "1.0.0",
+  "description": "## Examples `curl -X POST -v \"http://localhost:3000/api/survey.js\" -H 'Content-Type: application/json' -d '{\"userId\":100,\"surveyId\":100,\"answer\":\"test\",\"dateTime\":\"test\",\"type\":\"test\"}'`",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "mongodb": "^3.5.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

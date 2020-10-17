@@ -1,0 +1,1 @@
+export const XDAI_MOCK_URI = "https://mock-xdai-chain.vercel.app/api/"
