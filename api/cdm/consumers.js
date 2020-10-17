@@ -34,7 +34,6 @@ module.exports = async (req, res) => {
                     res.status(400).json(err);
                 }
                 else {
-                    console.log(result);
                     if (result && result.primaryAddress) { res.status(200).send(result.primaryAddress); }
                     else { res.status(400).send("no result"); }
                 }
@@ -65,14 +64,12 @@ module.exports = async (req, res) => {
                         q = {userId: body.userId, password: body.password, email: body.email, 
                         primaryAddress: response.data, addresses: [response.data]};
 
-                        console.log("new user", q);
-
                         collection.insertOne(q, (err, result) => {
                             if (err) { res.status(400).json(err); return; }
 
                             // save to wallet db
                             var col = db.collection('taidl_address');
-                            col.insertOne({address: response.data, isAnonymous: false}, (err, result) => {
+                            col.insertOne({address: response.data, isAnonymous: false, owner: body.userId}, (err, result) => {
                                 if (err) { res.status(400).json(err); return; }
                                 res.status(200).send("success");
                             })
