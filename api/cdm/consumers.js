@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
                     res.status(400).json(err);
                 }
                 else {
+                    console.log(result);
                     if (result && result.primaryAddress) { res.status(200).send(result.primaryAddress); }
                     else { res.status(400).send("no result"); }
                 }
