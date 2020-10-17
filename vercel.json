@@ -1,9 +1,6 @@
 {
     "name": "taidl-backend",
     "version": 2,
-    "env": {
-        "MONGODB_URI": "@my-mongodb-uri"
-    },
     "headers": [
       {
         "source": "/api/(.*)",

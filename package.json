@@ -1,5 +1,5 @@
 {
-  "name": "mock-xdai-chain",
+  "name": "taidl-backend",
   "version": "1.0.0",
   "description": "## Examples `curl -X POST -v \"http://localhost:3000/api/survey.js\" -H 'Content-Type: application/json' -d '{\"userId\":100,\"surveyId\":100,\"answer\":\"test\",\"dateTime\":\"test\",\"type\":\"test\"}'`",
   "main": "index.js",
